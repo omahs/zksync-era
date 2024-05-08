@@ -255,9 +255,17 @@ describe('Block reverting test', function () {
         console.log(
             'Finalize an L1 transaction to ensure at least 1 executed L1 batch and that all transactions are processed'
         );
+        const hh: zkweb3.types.PriorityOpResponse = await extNode.tester.syncWallet.deposit({
+            token: isETHBasedChain ? zkweb3.utils.LEGACY_ETH_ADDRESS : baseTokenAddress,
+            amount: depositAmount.div(2),
+            to: alice.address,
+            approveBaseERC20: true,
+            approveERC20: true
+        });
+        await utils.sleep(5);
         const h: zkweb3.types.PriorityOpResponse = await extNode.tester.syncWallet.deposit({
             token: isETHBasedChain ? zkweb3.utils.LEGACY_ETH_ADDRESS : baseTokenAddress,
-            amount: depositAmount,
+            amount: depositAmount.div(2),
             to: alice.address,
             approveBaseERC20: true,
             approveERC20: true
@@ -273,9 +281,17 @@ describe('Block reverting test', function () {
         // One is not enough to test the reversion of sk cache because
         // it gets updated with some batch logs only at the start of the next batch.
         const initialL1BatchNumber = (await main_contract.getTotalBatchesCommitted()).toNumber();
+        const ffirstDepositHandle = await extNode.tester.syncWallet.deposit({
+            token: isETHBasedChain ? zkweb3.utils.LEGACY_ETH_ADDRESS : baseTokenAddress,
+            amount: depositAmount.div(2),
+            to: alice.address,
+            approveBaseERC20: true,
+            approveERC20: true
+        });
+        await utils.sleep(5);
         const firstDepositHandle = await extNode.tester.syncWallet.deposit({
             token: isETHBasedChain ? zkweb3.utils.LEGACY_ETH_ADDRESS : baseTokenAddress,
-            amount: depositAmount,
+            amount: depositAmount.div(2),
             to: alice.address,
             approveBaseERC20: true,
             approveERC20: true
@@ -286,9 +302,17 @@ describe('Block reverting test', function () {
             await utils.sleep(0.1);
         }
 
+        const ssecondDepositHandle = await extNode.tester.syncWallet.deposit({
+            token: isETHBasedChain ? zkweb3.utils.LEGACY_ETH_ADDRESS : baseTokenAddress,
+            amount: depositAmount.div(2),
+            to: alice.address,
+            approveBaseERC20: true,
+            approveERC20: true
+        });
+        await utils.sleep(5);
         const secondDepositHandle = await extNode.tester.syncWallet.deposit({
             token: isETHBasedChain ? zkweb3.utils.LEGACY_ETH_ADDRESS : baseTokenAddress,
-            amount: depositAmount,
+            amount: depositAmount.div(2),
             to: alice.address,
             approveBaseERC20: true,
             approveERC20: true
@@ -357,9 +381,17 @@ describe('Block reverting test', function () {
         extNode = await ExtNode.spawn(extLogs, enableConsensus);
 
         console.log('Execute an L1 transaction');
+        const ddepositHandle = await extNode.tester.syncWallet.deposit({
+            token: isETHBasedChain ? zkweb3.utils.LEGACY_ETH_ADDRESS : baseTokenAddress,
+            amount: depositAmount.div(2),
+            to: alice.address,
+            approveBaseERC20: true,
+            approveERC20: true
+        });
+        await utils.sleep(5);
         const depositHandle = await extNode.tester.syncWallet.deposit({
             token: isETHBasedChain ? zkweb3.utils.LEGACY_ETH_ADDRESS : baseTokenAddress,
-            amount: depositAmount,
+            amount: depositAmount.div(2),
             to: alice.address,
             approveBaseERC20: true,
             approveERC20: true
